@@ -1,12 +1,12 @@
 @FishTextAPITests
-Feature:
+Feature: API tests for fish-text
 
 @Positive
 @TypeTitle
 Scenario Outline: Positive tests for Title
 Given parameters <format> and <number>
 When send GET request
-Then number in response should equal expected
+Then number in response should equal <expected>
 And result field in response should be 'success'
 
 Examples:
@@ -38,7 +38,7 @@ Examples:
 Scenario Outline: Positive tests for Paragraph
 Given parameters <format> and <number>
 When send GET request
-Then number in response should equal expected
+Then number in response should equal <expected>
 And result field in response should be 'success'
 
 Examples:
@@ -71,7 +71,7 @@ Examples:
 Scenario Outline: Positive tests for Sentence
 Given parameters <format> and <number>
 When send GET request
-Then number in response should equal expected
+Then number in response should equal <expected>
 And result field in response should be 'success'
 
 Examples:
@@ -103,7 +103,7 @@ Examples:
 Scenario Outline: Positive tests for Null type
 Given parameters <format> and <number>
 When send GET request
-Then number in response should equal expected
+Then number in response should equal <expected>
 And result field in response should be 'success'
 
 Examples:
@@ -135,9 +135,9 @@ Examples:
 Scenario Outline: Negative tests for Title
 Given parameters <format> and <number>
 When send GET request
-Then errorCode should equal expectedErrorCode
+Then errorCode should equal <expectedErrorCode>
 And result field in response should be 'error'
-And errorText should equal expectedErrorText
+And errorText should equal <expectedErrorText>
 
 Examples:
 | format   | number | expectedErrorCode | expectedErrorText                                 |
@@ -153,9 +153,9 @@ Examples:
 Scenario Outline: Negative tests for Paragraph
 Given parameters <format> and <number>
 When send GET request
-Then errorCode should equal expectedErrorCode
+Then errorCode should equal <expectedErrorCode>
 And result field in response should be 'error'
-And errorText should equal expectedErrorText
+And errorText should equal <expectedErrorText>
 
 Examples:
   | format   | number | expectedErrorCode | expectedErrorText                                 |
@@ -171,9 +171,9 @@ Examples:
 Scenario Outline: Negative tests for Paragraph
 Given parameters <format> and <number>
 When send GET request
-Then errorCode should equal expectedErrorCode
+Then errorCode should equal <expectedErrorCode>
 And result field in response should be 'error'
-And errorText should equal expectedErrorText
+And errorText should equal <expectedErrorText>
 
 Examples:
   | format   | number | expectedErrorCode | expectedErrorText                                 |
@@ -189,9 +189,9 @@ Examples:
 Scenario Outline: Negative tests for Paragraph
 Given parameters <format> and <number>
 When send GET request
-Then errorCode should equal expectedErrorCode
+Then errorCode should equal <expectedErrorCode>
 And result field in response should be 'error'
-And errorText should equal expectedErrorText
+And errorText should equal <expectedErrorText>
 
 Examples:
   | format   | number | expectedErrorCode | expectedErrorText                                 |

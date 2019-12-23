@@ -9,13 +9,13 @@ import org.junit.Assert;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
-public class TestCases {
+public class Stepdefs {
 
     private String format;
     private int number;
     private Response response;
 
-    @Given("^parameters (\\d+) and (\\d+)$")
+    @Given("parameters (.*) and (-?\\d+)")
     public void parameters_format_and_number(String format, int number) {
         this.format = format;
         this.number = number;
@@ -35,7 +35,7 @@ public class TestCases {
         response = request(format, number, "json");
     }
 
-    @And("result field in response should be '(.*)'$")
+    @And("^result field in response should be '(.*)'$")
     public void resultSuccess(String expectedStatus) {
         response.then().body("status", is(expectedStatus));
     }
@@ -49,7 +49,7 @@ public class TestCases {
             } else {
                 if (type.equals("paragraph")) {
                     return "</p>";
-                } else { // TYPE_TITLE
+                } else {
                     return "</h1>";
                 }
             }
@@ -66,18 +66,18 @@ public class TestCases {
         return "Invalid amount of '" + type + "':";
     }
 
-    @Then("number in response should equal expected")
+    @Then("^number in response should equal (\\d+)$")
     public void numberExpected(int expectedNumber) {
         Assert.assertEquals(countNumber(response.jsonPath().getString("text"), format, "json"),
                 expectedNumber, getInvalid(format));
     }
 
-    @Then("errorCode should equal expectedErrorCode")
+    @Then("^errorCode should equal (\\d+)$")
     public void jsonErrorCodeShouldEqualExpected(int errorCode) {
         response.then().body(String.valueOf(errorCode), is(errorCode));
     }
 
-    @And("errorText should equal expectedErrorText")
+    @And("^errorText should equal (.*)$")
     public void jsonErrorTextShouldEqualErrorText(String errorText) {
         response.then().body("text", is(errorText));
     }
