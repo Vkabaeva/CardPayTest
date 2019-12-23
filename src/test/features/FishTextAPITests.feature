@@ -4,11 +4,10 @@ Feature:
 @Positive
 @TypeTitle
 Scenario Outline: Positive tests for Title
-Given parameters format and number
-When send GET-request
-Then the status code should be 200
+Given parameters <format> and <number>
+When send GET request
+Then number in response should equal expected
 And result field in response should be 'success'
-And number of elements in response should equal expected
 
 Examples:
 | format   | number | expected   |
@@ -37,11 +36,10 @@ Examples:
 @Positive
 @TypeParagraph
 Scenario Outline: Positive tests for Paragraph
-Given parameters format and number
-When send GET-request
-Then the status code should be 200
+Given parameters <format> and <number>
+When send GET request
+Then number in response should equal expected
 And result field in response should be 'success'
-And number of elements in response should equal expected
 
 Examples:
   | format   | number | expected   |
@@ -71,11 +69,10 @@ Examples:
 @Positive
 @TypeSentence
 Scenario Outline: Positive tests for Sentence
-Given parameters format and number
-When send GET-request
-Then the status code should be 200
+Given parameters <format> and <number>
+When send GET request
+Then number in response should equal expected
 And result field in response should be 'success'
-And number of elements in response should equal expected
 
 Examples:
   | format   | number | expected   |
@@ -104,11 +101,10 @@ Examples:
 @Positive
 @TypeDefault
 Scenario Outline: Positive tests for Null type
-Given parameters format and number
-When send GET-request
-Then the status code should be 200
+Given parameters <format> and <number>
+When send GET request
+Then number in response should equal expected
 And result field in response should be 'success'
-And number of elements in response should equal expected
 
 Examples:
   | format   | number | expected   |
@@ -137,15 +133,14 @@ Examples:
 @Negative
 @TypeTitle
 Scenario Outline: Negative tests for Title
-Given parameters format and number
-When send GET-request
-Then the status code should be 200
+Given parameters <format> and <number>
+When send GET request
+Then errorCode should equal expectedErrorCode
 And result field in response should be 'error'
-And errorCode should equal expectedErrorCode
 And errorText should equal expectedErrorText
 
 Examples:
-| format   | number | expectedErrorCode | expectedErrorText                                         |
+| format   | number | expectedErrorCode | expectedErrorText                                 |
 | JSON     |   -1   |        31         | Unknown error. Contact the administration.        |
 | JSON     |   501  |        11         | You requested too much content. Be more moderate. |
 | HTML     |   -1   |        31         | Unknown error. Contact the administration.        |
@@ -156,15 +151,14 @@ Examples:
 @Negative
 @TypeParagraph
 Scenario Outline: Negative tests for Paragraph
-Given parameters format and number
-When send GET-request
-Then the status code should be 200
+Given parameters <format> and <number>
+When send GET request
+Then errorCode should equal expectedErrorCode
 And result field in response should be 'error'
-And errorCode should equal expectedErrorCode
 And errorText should equal expectedErrorText
 
 Examples:
-  | format   | number | expectedErrorCode | expectedErrorText                                         |
+  | format   | number | expectedErrorCode | expectedErrorText                                 |
   | JSON     |   -1   |        31         | Unknown error. Contact the administration.        |
   | JSON     |   101  |        11         | You requested too much content. Be more moderate. |
   | HTML     |   -1   |        31         | Unknown error. Contact the administration.        |
@@ -175,15 +169,14 @@ Examples:
 @Negative
 @TypeSentence
 Scenario Outline: Negative tests for Paragraph
-Given parameters format and number
-When send GET-request
-Then the status code should be 200
+Given parameters <format> and <number>
+When send GET request
+Then errorCode should equal expectedErrorCode
 And result field in response should be 'error'
-And errorCode should equal expectedErrorCode
 And errorText should equal expectedErrorText
 
 Examples:
-  | format   | number | expectedErrorCode | expectedErrorText                                         |
+  | format   | number | expectedErrorCode | expectedErrorText                                 |
   | JSON     |   -1   |        31         | Unknown error. Contact the administration.        |
   | JSON     |   501  |        11         | You requested too much content. Be more moderate. |
   | HTML     |   -1   |        31         | Unknown error. Contact the administration.        |
@@ -194,15 +187,14 @@ Examples:
 @Negative
 @TypeDefault
 Scenario Outline: Negative tests for Paragraph
-Given parameters format and number
-When send GET-request
-Then the status code should be 200
+Given parameters <format> and <number>
+When send GET request
+Then errorCode should equal expectedErrorCode
 And result field in response should be 'error'
-And errorCode should equal expectedErrorCode
 And errorText should equal expectedErrorText
 
 Examples:
-  | format   | number | expectedErrorCode | expectedErrorText                                         |
+  | format   | number | expectedErrorCode | expectedErrorText                                 |
   | JSON     |   -1   |        31         | Unknown error. Contact the administration.        |
   | JSON     |   501  |        11         | You requested too much content. Be more moderate. |
   | HTML     |   -1   |        31         | Unknown error. Contact the administration.        |
